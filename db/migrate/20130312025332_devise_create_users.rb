@@ -36,6 +36,10 @@ class DeviseCreateUsers < ActiveRecord::Migration
       ## State Machine
       t.string :state
 
+      ## Omniauth-Facebook
+      t.string :provider
+      t.string :uid
+
       t.timestamps
     end
 
