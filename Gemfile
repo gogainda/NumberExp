@@ -7,6 +7,7 @@ gem "unicorn", ">= 4.3.1"
 gem "pg", ">= 0.14.1"
 gem "haml-rails", ">= 0.4"
 
+gem 'state_machine'
 gem "figaro", ">= 0.5.3"
 gem "libv8", ">= 3.11.8"
 gem "devise", ">= 2.2.3"
