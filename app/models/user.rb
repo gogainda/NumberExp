@@ -1,11 +1,36 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :registerable, :rememberable, :trackable,
+         :omniauthable, omniauth_providers: [:facebook]
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
-  # attr_accessible :title, :body
+  store :info, accessors: [:first_name, :last_name, :name, :gender, :timezone, :username, :image, :nickname, :urls]
+
+  attr_accessible :email, :remember_me, :facebook_uid, :facebook_token
+
+  validates_presence_of :facebook_uid
+  validates_uniqueness_of :facebook_uid
+
+  def self.from_facebook_omniauth(auth)
+    user = where(facebook_uid: auth.uid).first_or_initialize
+    user.update_with_facebook_info(auth)
+  end
+
+  def update_with_facebook_info(auth)
+    base_info = auth.info
+    raw_info = auth.extra.raw_info
+
+    self.tap do |user|
+      user.facebook_oauth_token = auth.credentials.token
+      user.facebook_uid = auth.uid || raw_info.id
+      user.email        = base_info.email || raw_info.email
+      user.first_name   = base_info.first_name || raw_info.first_name
+      user.last_name    = base_info.last_name || raw_info.last_name
+      user.name         = base_info.name || raw_info.name
+      user.gender       = raw_info.gender
+      user.timezone     = raw_info.timezone
+      user.username     = raw_info.username
+      user.image        = base_info.image
+      user.nickname     = base_info.nickname
+      user.urls         = base_info.urls
+    end
+  end
 end
