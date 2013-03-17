@@ -94,7 +94,26 @@ class PhoneNumber
     false
   end
 
+  def caller_id(options = {})
+    Rails.cache.fetch(['caller id', number], expires_in: 3.days, force: options[:force]) do
+      retrieve_caller_id
+    end
+  end
+
   private
+
+  def retrieve_caller_id
+    begin
+      Opencnam::Client.new({
+        use_ssl: true
+      }).phone @number.to_s
+    rescue => e
+      Rails.logger.error 'opencnam lookup failed'
+      Rails.logger.error e.message
+      Rails.logger.error e.backtrace.join("\n")
+      nil
+    end
+  end
 
   def real_number
     errors.add(:number, 'invalid npa/area code')     unless PhoneNumber.npa.include?(npa) || PhoneNumber.toll_free_npa.include?(npa)

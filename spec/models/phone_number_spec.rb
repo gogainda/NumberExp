@@ -120,4 +120,20 @@ describe PhoneNumber do
 
     its(:persisted) { should be_false }
   end
+
+  describe '#caller_id' do
+    subject { PhoneNumber.new(number) }
+
+    context 'real number' do
+      let(:number) { 7736292663 }
+      #boring caller id example...
+      its(:caller_id) { should eq 'WIRELESS CALLER' }
+    end
+
+    context 'invalid number' do
+      let(:number) { 800 }
+
+      its(:caller_id) { should be_nil }
+    end
+  end
 end
