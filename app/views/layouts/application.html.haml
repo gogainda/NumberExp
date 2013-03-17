@@ -1,0 +1,47 @@
+!!! 5
+%html
+  %head
+
+    %meta{:charset => 'utf-8'}
+    %meta{'http-equiv' => 'X-UA-Compatible', :content => 'IE=edge,chrome=1'}
+    %meta{:name => 'viewport', :content => 'width=device-width, initial-scale=1, maximum-scale=1'}
+    %meta{:name => 'author', :content => 'NumberNote'}
+    %meta{:name => 'title', :content => content_for?(:page_meta_title) ? yield(:page_meta_title) : 'NumberNote - Your Reverse Owner Phone Number Lookup Source' }
+    %meta{:name => 'description', :content => content_for?(:page_meta_description) ? yield(:page_meta_description) : 'NumberNote - Your Reverse Owner Phone Number Lookup Source'}
+
+    %meta{:name => 'og:description', :content => content_for?(:page_meta_description) ? yield(:page_meta_description) : 'NumberNote - Your Reverse Owner Phone Number Lookup Source'}
+    %meta{:name => 'og:type', :content => 'website'}
+    %meta{:name => 'og:site_name', :content => 'NumberNote'}
+    %meta{:name => 'og:url', :content => "#{url_for only_path: false}"}
+    %meta{:name => 'url', :content => "#{url_for only_path: false}"}
+    %meta{:name => 'identifier-URL', :content => 'http://www.NumberNote.com'}
+    %meta{:name => 'subject', :content => 'Phone number owner reverse lookup and information'}
+    %meta{:name => 'category', :content => 'Phone number owner reverse lookup and information'}
+    %meta{:name => 'distribution', :content => 'global'}
+    %meta{:name => 'revisit-after', :content => '7 days'}
+    %meta{'http-equiv' => 'Expires', :content => "#{ 7.days.from_now }"}
+    %meta{'http-equiv' => 'Pragma', :content => 'no-cache'}
+    %meta{'http-equiv' => 'Cache-Control', :content => 'no-cache'}
+
+    - if content_for?(:meta_tags)
+      = yield :meta_tags
+
+    %title= content_for?(:page_title) ? yield(:page_title) : 'NumberNote - Your Reverse Owner Phone Number Lookup Source'
+
+    = stylesheet_link_tag 'application', media: 'all'
+    = csrf_meta_tags
+
+  %body
+    - flash.each do |type, value|
+      %div{class: "alert alert-#{type}", 'data-alert-class' => 'alert'}
+        = value
+        %a.close{:href => '#', 'data-dismiss' => 'alert', :title => 'Close'}
+          %i.icon.icon-remove.icon-white
+
+    = yield
+
+    %footer.footer
+      .container
+
+    = javascript_include_tag 'application'
+

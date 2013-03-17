@@ -33,4 +33,8 @@ class User < ActiveRecord::Base
       user.urls         = base_info.urls
     end
   end
+
+  def premium_access?
+    true
+  end
 end

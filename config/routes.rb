@@ -6,6 +6,10 @@ Numbernote::Application.routes.draw do
     delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
 
+  resources :phonenumbers, path: 'n', only: [:index_nxx, :index_line, :show] do
+    get :caller_id
+  end
+
   root to: 'pages#home'
 
   # The priority is based upon order of creation:
