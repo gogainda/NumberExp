@@ -29,19 +29,25 @@
     %title= content_for?(:page_title) ? yield(:page_title) : 'NumberNote - Your Reverse Owner Phone Number Lookup Source'
 
     = stylesheet_link_tag 'application', media: 'all'
+    %link{href: 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800', rel: 'stylesheet', type:'text/css'}
     = csrf_meta_tags
 
   %body
+    %header#header
+      = render 'layouts/navigation'
     - flash.each do |type, value|
       %div{class: "alert alert-#{type}", 'data-alert-class' => 'alert'}
         = value
         %a.close{:href => '#', 'data-dismiss' => 'alert', :title => 'Close'}
           %i.icon.icon-remove.icon-white
 
-    = yield
+    - unless @homepage = true
+      .container#content
+        = yield
+    - else
+      = yield
 
-    %footer.footer
-      .container
+    = render 'layouts/footer'
 
     = javascript_include_tag 'application'
 

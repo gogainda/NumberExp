@@ -11,5 +11,7 @@
  *= require_self
  *= require bootstrap.css
  *= require bootstrap-responsive.css
+ *= require bootstrap-override.css
+ *= require style.min.css
  *= require_tree .
  */
