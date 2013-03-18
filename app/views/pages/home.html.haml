@@ -7,17 +7,26 @@
         Enter any number to get its details and community comments
       #home-search.ac.faq
         %input{type: 'text', placeholder:'Search...'}
-        .btn.btn-success.search_button
+        %a.btn.btn-success.search_button
           Search
+    %hr
     .row
-      .span8
-        %h1.lead
-          %b='Talk To Us!'
-          Is there something you'd like to see here? Suggestions you'd like to make? Interested in something else?
-          Just get in touch with us at contact@numbernote.com
       .span4
         %h3.ac
           Free
           %small=' while in beta'
         %p.ac
-          %a.btn.btn-large.btn-primary{title: true, href: link_to_facebook_signin}
+          %a.btn.btn-large.btn-primary{title: true, href: user_omniauth_authorize_path(:facebook)}
+            %b='Sign in with Facebook'
+      .span4
+        %h2='Talk To Us'
+        %p="Is there something you'd like to see here? Suggestions you'd like to make? Interested in something else?"
+        %p='Just get in touch with us at contact@numbernote.com'
+      .span4
+        %h2='Works on Mobile'
+        %p="Optimized to work on smartphones and tablet devices. Go ahead and visit us on the device of your choice, and we'll take care of the rest!"
+    %hr
+    .row
+      %h3='Browse by Area Code'
+      -@npas.each do |npa|
+        =link_to npa, index_nxx_path(npa: npa)

@@ -41,10 +41,7 @@
         %a.close{:href => '#', 'data-dismiss' => 'alert', :title => 'Close'}
           %i.icon.icon-remove.icon-white
 
-    - unless @homepage = true
-      .container#content
-        = yield
-    - else
+    .container#content
       = yield
 
     = render 'layouts/footer'

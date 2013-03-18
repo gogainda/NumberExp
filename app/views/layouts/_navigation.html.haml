@@ -11,12 +11,8 @@
       .nav-collapse
         %ul.nav
           %li
-            %a{href: root_path}= 'oh hai'
+            %a{href: root_path}= 'Home'
           %li
-            %a{href: root_path}= 'oh hai'
-          %li
-            %a{href: root_path}= 'oh hai'
-          %li
-            %a{href: root_path}= 'oh hai'
-          %li
-            %a{href: root_path}= 'oh hai'
+            %a{href: index_npa_path}= 'Area Codes'
+          %a.btn.btn-primary{title: true, href: user_omniauth_authorize_path(:facebook)}
+            %b='Sign in with Facebook'
