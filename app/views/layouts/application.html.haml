@@ -35,11 +35,13 @@
   %body
     %header#header
       = render 'layouts/navigation'
-    - flash.each do |type, value|
-      %div{class: "alert alert-#{type}", 'data-alert-class' => 'alert'}
-        = value
-        %a.close{:href => '#', 'data-dismiss' => 'alert', :title => 'Close'}
-          %i.icon.icon-remove.icon-white
+
+    .container
+      - flash.each do |type, value|
+        %div{class: "alert alert-#{type}", 'data-alert-class' => 'alert'}
+          = value
+          %a.close{:href => '#', 'data-dismiss' => 'alert', :title => 'Close'}
+            %i.icon.icon-remove.icon-white
 
     .container#content
       = yield

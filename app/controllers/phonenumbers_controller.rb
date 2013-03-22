@@ -16,7 +16,16 @@ class PhonenumbersController < ApplicationController
 
   def show
     @phone_number = PhoneNumber.new(params[:id])
-    redirect_to :root unless @phone_number.valid?
+    bad_number_redirect unless @phone_number.valid?
+  end
+
+  def search
+    @phone_number = PhoneNumber.new(params['number'])
+    if @phone_number.valid?
+      redirect_to phonenumber_path @phone_number
+    else
+      bad_number_redirect
+    end
   end
 
   def caller_id
@@ -25,5 +34,12 @@ class PhonenumbersController < ApplicationController
     respond_to do |format|
       format.json { render json: caller_id }
     end
+  end
+
+  private
+
+  def bad_number_redirect
+    flash[:error] = 'Not a valid number'
+    redirect_to :root
   end
 end

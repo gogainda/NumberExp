@@ -90,8 +90,12 @@ class PhoneNumber
     end
   end
 
-  def persisted
+  def persisted?
     false
+  end
+
+  def to_param
+    number
   end
 
   def caller_id(options = {})
