@@ -8,11 +8,62 @@
 - meta_tags do
   = meta_tag('keywords', keywords_str)
 
-.hero-unit
-  .container
-    %h1.ac
-      = readable_number
-    %p.ac
-      All available information on #{readable_number} below!
+%div{itemscope: true, itemtype: 'http://data-vocabulary.org/Review'}
+  .hero-unit
+    .container{itemprop: 'summary'}
+      %h1.ac{itemprop: 'itemreviewed'}
+        = readable_number
+      %p.ac
+        All available information on #{readable_number} below!
 
-this is a number:
+  .row
+    .span6
+      %table.table{itemprop: 'description'}
+        %tr
+          %td
+            %strong='Caller ID'
+          %td
+            .caller_id='Loading...'
+        %tr
+          %td
+            %strong='Carrier Company'
+          %td
+            .caller_id='Loading...'
+        %tr
+          %td
+            %strong='Rate Center'
+          %td
+            .caller_id='Loading...'
+        %tr
+          %td
+            %strong='Ilec'
+          %td
+            .caller_id='Loading...'
+        %tr
+          %td
+            %strong='Latitude'
+          %td
+            .caller_id='Loading...'
+        %tr
+          %td
+            %strong='Longitude'
+          %td
+            .caller_id='Loading...'
+        %tr
+          %td
+            %strong='Rating'
+          %td
+            .rating{itemprop: 'rating'}='Loading...'
+        %tr
+          %td
+            %strong='Reviewed By'
+          %td
+            .reviewer{itemprop:'reviewer'}='Loading...'
+    .span6
+      #map_canvas
+
+- content_for :body_js do
+  :javascript
+    $(document).ready(function(){
+      initNumberShow();
+    });
