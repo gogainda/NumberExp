@@ -1,5 +1,32 @@
-oh hai
-
-= link_to 'login w face', user_omniauth_authorize_path(:facebook)
-
-= @the_stuff if @the_stuff
+.homepage
+  .container
+    .hero-unit
+      %h1.ac
+        Lookup, any number
+      %p.ac
+        Enter any number to get its details and community comments
+      = form_tag({controller: :phonenumbers, action: :search}, method: :get, id: 'home-search', class: 'ac faq') do
+        %input{type: 'text', placeholder:'Search...', id: :number, name: :number}
+        %button.btn.btn-success.search_button{type: :submit}
+          Search
+    %hr
+    .row
+      .span4
+        %h3.ac
+          Free
+          %small=' while in beta'
+        %p.ac
+          %a.btn.btn-large.btn-primary{title: true, href: user_omniauth_authorize_path(:facebook)}
+            %b='Sign in with Facebook'
+      .span4
+        %h2='Talk To Us'
+        %p="Is there something you'd like to see here? Suggestions you'd like to make? Interested in something else?"
+        %p='Just get in touch with us at contact@numbernote.com'
+      .span4
+        %h2='Works on Mobile'
+        %p="Optimized to work on smartphones and tablet devices. Go ahead and visit us on the device of your choice, and we'll take care of the rest!"
+    %hr
+    .row
+      %h3='Browse by Area Code'
+      -@npas.each do |npa|
+        =link_to npa, index_nxx_path(npa: npa)

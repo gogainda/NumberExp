@@ -1,0 +1,19 @@
+- title_str       = "Phone Number Owner and Info Reverse Lookup Search"
+- desc_str        = "Result for #{title_str} number owner information and reverse lookup search"
+- keywords_str    = "reverse lookup, owner, caller"
+- page_title title_str
+- page_meta_title title_str
+- page_meta_description desc_str
+- meta_tags do
+  = meta_tag('keywords', keywords_str)
+
+%div.hero-unit.ac{itemscope: true, itemtype: 'http://data-vocabulary.org/Review'}
+  %h2{itemprop: 'itemreviewed'}
+    Area Codes
+  %p{itemprop: 'summary'}
+    Select the area code as reviewed by <span itemprop='reviewer'>NumberNote</span> below for reverse owner lookup search info.
+    Rated <span itemprop='rating'>4.8</span>.
+
+%ul.nav.nav-pills{itemprop: 'description'}
+  - @npa.each do |npa_single|
+    %li=link_to npa_single, index_nxx_path(npa: npa_single)

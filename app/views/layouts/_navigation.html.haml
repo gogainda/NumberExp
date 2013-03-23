@@ -1,0 +1,18 @@
+.navbar
+  .navbar-inner
+    .container
+      %a.btn.btn-navbar{:'data-toggle' => 'collapse', :'data-target' => '.nav-collapse'}
+        .icon-bar
+        .icon-bar
+        .icon-bar
+      %a.brand{href: root_path}
+        %b='Number'
+        Note
+      .nav-collapse
+        %ul.nav
+          %li
+            %a{href: root_path}= 'Home'
+          %li
+            %a{href: index_npa_path}= 'Area Codes'
+          %a.btn.btn-primary{title: true, href: user_omniauth_authorize_path(:facebook)}
+            %b='Sign in with Facebook'

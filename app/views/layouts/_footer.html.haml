@@ -1,0 +1,28 @@
+%footer
+  .container
+    .row
+      .span4
+        %h3='NumberNote'
+        %ul
+          %li
+            %a{href: root_path, title: true}='Home'
+          %li
+            %a{href: index_npa_path, title: true}='Area Codes'
+          %li
+            %a{href: termsofuse_path, title: true}='Terms of Use'
+          %li
+            %a{href: privacypolicy_path, title: true}='Privacy Policy'
+      .span4
+        %h3='Contact'
+        %p="Have something you'd like to share with us? Ideas, questions, problems? We'd love to hear from you!"
+        %p="Contact@NumberNote.com"
+      .span4
+        %h3='About NumberNote'
+        %p="We provide accurate, fast, and easy reverse lookup information on millions of phone numbers. That\'s it!"
+  #footer-extra
+    .container
+      .row
+        .span4
+          Copyright © #{Time.now.year} NumberNote. All Rights Reserved.
+        .span2.pull-right
+          A #{link_to 'Kionin', 'http://kionin.com'} property.

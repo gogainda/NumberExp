@@ -1,0 +1,69 @@
+- readable_number = "#{@phone_number.npa}-#{@phone_number.nxx}-#{@phone_number.line}"
+- title_str       = "#{readable_number} Info and Owner Reverse Lookup Search | Number Note"
+- desc_str        = "Result for #{readable_number} number owner information and reverse lookup search"
+- keywords_str    = "#{readable_number}, #{@phone_number.number}, reverse lookup, owner, caller"
+- page_title title_str
+- page_meta_title title_str
+- page_meta_description desc_str
+- meta_tags do
+  = meta_tag('keywords', keywords_str)
+
+%div{itemscope: true, itemtype: 'http://data-vocabulary.org/Review'}
+  .hero-unit
+    .container{itemprop: 'summary'}
+      %h1.ac{itemprop: 'itemreviewed'}
+        = readable_number
+      %p.ac
+        All available information on #{readable_number} below!
+
+  .row
+    .span6
+      %table.table{itemprop: 'description'}
+        %tr
+          %td
+            %strong='Caller ID'
+          %td
+            .caller_id='Loading...'
+        %tr
+          %td
+            %strong='Carrier Company'
+          %td
+            .caller_id='Loading...'
+        %tr
+          %td
+            %strong='Rate Center'
+          %td
+            .caller_id='Loading...'
+        %tr
+          %td
+            %strong='Ilec'
+          %td
+            .caller_id='Loading...'
+        %tr
+          %td
+            %strong='Latitude'
+          %td
+            .caller_id='Loading...'
+        %tr
+          %td
+            %strong='Longitude'
+          %td
+            .caller_id='Loading...'
+        %tr
+          %td
+            %strong='Rating'
+          %td
+            .rating{itemprop: 'rating'}='Loading...'
+        %tr
+          %td
+            %strong='Reviewed By'
+          %td
+            .reviewer{itemprop:'reviewer'}='Loading...'
+    .span6
+      #map_canvas
+
+- content_for :body_js do
+  :javascript
+    $(document).ready(function(){
+      initNumberShow();
+    });

@@ -6,6 +6,18 @@ Numbernote::Application.routes.draw do
     delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
 
+  resources :phonenumbers, path: 'n', only: [:index_nxx, :index_line, :show] do
+    get :caller_id
+    get :search, on: :collection
+  end
+
+  match '/a/',          to: 'phonenumbers#index_npa',  as: :index_npa
+  match '/a/:npa',      to: 'phonenumbers#index_nxx',  as: :index_nxx
+  match '/a/:npa/:nxx', to: 'phonenumbers#index_line', as: :index_line
+
+  match '/termsofuse',    to: 'pages#termsofuse',    as: :termsofuse
+  match '/privacypolicy', to: 'pages#privacypolicy', as: :privacypolicy
+
   root to: 'pages#home'
 
   # The priority is based upon order of creation:

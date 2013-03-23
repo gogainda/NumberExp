@@ -115,10 +115,16 @@ describe PhoneNumber do
     end
   end
 
-  describe '#persisted' do
+  describe '#persisted?' do
     subject { PhoneNumber.new(7736292443) }
 
-    its(:persisted) { should be_false }
+    its(:persisted?) { should be_false }
+  end
+
+  describe '#to_param' do
+    subject { PhoneNumber.new(7736292443) }
+
+    its(:to_param) { should eq :'7736292443' }
   end
 
   describe '#caller_id' do
