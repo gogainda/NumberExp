@@ -7,6 +7,7 @@ gem 'unicorn', '>= 4.3.1'
 gem 'pg', '>= 0.14.1'
 gem 'haml-rails', '>= 0.4'
 
+gem 'httparty'
 gem 'state_machine'
 gem 'kaminari'
 gem 'opencnam'

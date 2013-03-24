@@ -45,4 +45,31 @@ module TestHelpers
   def toll_free_npa
     [800, 822, 833, 844, 855, 866, 877, 880, 881, 882, 888].map! { |n| n.to_s.to_sym }
   end
+
+  def telco_info_response
+    {
+      'company_name' => 'T-MOBILE USA, INC.',
+      'company_type' => 'W',
+          'discdate' => nil,
+           'effdate' => nil,
+              'exch' => '047891',
+         'ilec_name' => 'AMERITECH ILLINOIS',
+          'ilec_ocn' => '9329',
+              'lata' => '358',
+               'npa' => '773',
+               'nxx' => '629',
+               'ocn' => '6529',
+                'rc' => 'Chicago Zone 10-Beverly',
+              'rc_h' => '3426',
+            'rc_lat' => '41.883465',
+            'rc_lon' => '-87.635162',
+              'rc_v' => '5986',
+            'region' => 'IL',
+            'switch' => 'CHCGILMFCM1',
+        'switchname' => nil,
+        'switchtype' => 'CMC',
+             'udate' => '2006-12-11 03:30:30',
+                 'x' => nil
+    }
+  end
 end

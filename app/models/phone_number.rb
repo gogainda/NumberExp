@@ -99,12 +99,26 @@ class PhoneNumber
   end
 
   def caller_id(options = {})
-    Rails.cache.fetch(['caller id', number], expires_in: 3.days, force: options[:force]) do
+    cached_request 'caller id', options[:force] do
       retrieve_caller_id
     end
   end
 
+  def telco_info(options = {})
+    cached_request 'telco info', options[:force] do
+      Numbernote::LocalCallingGuideApi.new(npa: @npa, nxx: @nxx).telco_info
+    end
+  end
+
   private
+
+  def cached_request(key, force)
+    if valid?
+      Rails.cache.fetch([key, number], expires_in: 3.days, force: force) { yield }
+    else
+      nil
+    end
+  end
 
   def retrieve_caller_id
     begin

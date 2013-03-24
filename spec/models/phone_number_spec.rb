@@ -142,4 +142,21 @@ describe PhoneNumber do
       its(:caller_id) { should be_nil }
     end
   end
+
+  describe '#telco_info' do
+    subject { PhoneNumber.new(number) }
+
+    context 'real number' do
+      let(:number) { 7736292663 }
+
+      its(:telco_info) { should be_an_instance_of Hash }
+      its(:telco_info) { should eq telco_info_response }
+    end
+
+    context 'invalid number' do
+      let(:number) { 800 }
+
+      its(:telco_info) { should be_nil }
+    end
+  end
 end
