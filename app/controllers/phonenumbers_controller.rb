@@ -29,10 +29,18 @@ class PhonenumbersController < ApplicationController
   end
 
   def caller_id
-    authorize!(:read_number_premium, PhoneNumber)
+    authorize! :read_number_premium, PhoneNumber
     caller_id = PhoneNumber.new(params[:phonenumber_id]).caller_id || ''
     respond_to do |format|
       format.json { render json: caller_id }
+    end
+  end
+
+  def telco_info
+    authorize! :read_number_basic, PhoneNumber
+    telco_info = PhoneNumber.new(params[:phonenumber_id]).telco_info || ''
+    respond_to do |format|
+      format.json { render json: telco_info }
     end
   end
 

@@ -91,4 +91,12 @@ describe PhonenumbersController do
       response.body.should eq 'WIRELESS CALLER'
     end
   end
+
+  describe 'telco_info' do
+    it 'returns telco info' do
+      get :telco_info, phonenumber_id: 7736296529, format: :json
+      output = JSON.parse(response.body)
+      output.should eq telco_info_response
+    end
+  end
 end

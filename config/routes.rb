@@ -8,6 +8,7 @@ Numbernote::Application.routes.draw do
 
   resources :phonenumbers, path: 'n', only: [:index_nxx, :index_line, :show] do
     get :caller_id
+    get :telco_info
     get :search, on: :collection
   end
 
