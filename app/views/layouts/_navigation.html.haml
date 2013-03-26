@@ -14,5 +14,9 @@
             %a{href: root_path}= 'Home'
           %li
             %a{href: index_npa_path}= 'Area Codes'
-          %a.btn.btn-primary{title: true, href: user_omniauth_authorize_path(:facebook)}
-            %b='Sign in with Facebook'
+          -if user_signed_in?
+            = link_to('Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-inverse')
+            %img{src: "#{current_user.image}"}
+          -else
+            %a.btn.btn-primary{title: true, href: user_omniauth_authorize_path(:facebook)}
+              %b='Sign in with Facebook'

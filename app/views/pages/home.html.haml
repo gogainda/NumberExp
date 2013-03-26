@@ -16,8 +16,12 @@
           Free
           %small=' while in beta'
         %p.ac
-          %a.btn.btn-large.btn-primary{title: true, href: user_omniauth_authorize_path(:facebook)}
-            %b='Sign in with Facebook'
+          -if user_signed_in?
+            %a.btn.btn-large.btn-primary{title: true}
+              %b='Signed in!'
+          -else
+            %a.btn.btn-large.btn-primary{title: true, href: user_omniauth_authorize_path(:facebook)}
+              %b='Sign in with Facebook'
       .span4
         %h2='Talk To Us'
         %p="Is there something you'd like to see here? Suggestions you'd like to make? Interested in something else?"
