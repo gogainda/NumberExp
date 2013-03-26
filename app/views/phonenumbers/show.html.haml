@@ -18,47 +18,107 @@
 
   .row
     .span6
-      %table.table{itemprop: 'description'}
-        %tr
-          %td
-            %strong='Caller ID'
-          %td
-            #caller-id='Loading...'
-        %tr
-          %td
-            %strong='Carrier Company'
-          %td
-            #carrier-company='Loading...'
-        %tr
-          %td
-            %strong='Rate Center'
-          %td
-            #rate-center='Loading...'
-        %tr
-          %td
-            %strong='Ilec'
-          %td
-            #ilec='Loading...'
-        %tr
-          %td
-            %strong='Latitude'
-          %td
-            #latitude='Loading...'
-        %tr
-          %td
-            %strong='Longitude'
-          %td
-            #longitude='Loading...'
-        %tr
-          %td
-            %strong='Rating'
-          %td
-            #rating{itemprop: 'rating'}="4.#{readable_number[-2].to_i/2}"
-        %tr
-          %td
-            %strong='Reviewed By'
-          %td
-            #reviewer{itemprop:'reviewer'}='NumberNote'
+      .row
+        %ul#info-tabs.nav.nav-tabs
+          %li.active
+            %a{href:'#main-info', :'data-toggle' => 'tab'}='Main Info'
+          %li
+            %a{href:'#additional-info', :'data-toggle' => 'tab'}='Additional Info'
+      .tab-content
+        #main-info.tab-pane.active
+          %table.table{itemprop: 'description'}
+            %tr
+              %td
+                %strong='Caller ID'
+              %td
+                #caller-id='Loading...'
+            %tr
+              %td
+                %strong='Carrier Company'
+              %td
+                #carrier-company='Loading...'
+            %tr
+              %td
+                %strong='Rate Center'
+              %td
+                #rate-center='Loading...'
+            %tr
+              %td
+                %strong='Region'
+              %td
+                #region='Loading...'
+            %tr
+              %td
+                %strong='Ilec'
+              %td
+                #ilec='Loading...'
+            %tr
+              %td
+                %strong='Latitude'
+              %td
+                #latitude='Loading...'
+            %tr
+              %td
+                %strong='Longitude'
+              %td
+                #longitude='Loading...'
+            %tr
+              %td
+                %strong='Rating'
+              %td
+                #rating{itemprop: 'rating'}="4.#{readable_number[-2].to_i/2}"
+            %tr
+              %td
+                %strong='Reviewed By'
+              %td
+                #reviewer{itemprop:'reviewer'}='NumberNote'
+        #additional-info.tab-pane
+          %table.table
+            %tr
+              %td
+                %strong='Carrier Type'
+              %td
+                #carrier-type='Loading...'
+            %tr
+              %td
+                %strong='Exchange'
+              %td
+                #exchange='Loading...'
+            %tr
+              %td
+                %strong='Ilec OCN'
+              %td
+                #ilec-ocn='Loading...'
+            %tr
+              %td
+                %strong='Lata'
+              %td
+                #lata='Loading...'
+            %tr
+              %td
+                %strong='Switch'
+              %td
+                #switch='Loading...'
+            %tr
+              %td
+                %strong='Switch Name'
+              %td
+                #switch-name='Loading...'
+            %tr
+              %td
+                %strong='Switch Type'
+              %td
+                #switch-type='Loading...'
+            %tr
+              %td
+                %strong='Rate Center H Coordinates'
+              %td
+                #rc-h='Loading...'
+            %tr
+              %td
+                %strong='Rate Center V Coordinates'
+              %td
+                #rc-v='Loading...'
     .span6
       #map_canvas
 

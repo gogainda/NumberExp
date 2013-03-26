@@ -334,3 +334,9 @@
   }
 
 }
+
+.nav-tabs > .active > a,
+.nav-tabs > .active > a:hover,
+.nav-tabs > .active > a:focus {
+  background: url(/assets/content_bg.jpg) repeat left top;
+}
