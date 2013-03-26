@@ -23,47 +23,49 @@
           %td
             %strong='Caller ID'
           %td
-            .caller_id='Loading...'
+            #caller-id='Loading...'
         %tr
           %td
             %strong='Carrier Company'
           %td
-            .caller_id='Loading...'
+            #carrier-company='Loading...'
         %tr
           %td
             %strong='Rate Center'
           %td
-            .caller_id='Loading...'
+            #rate-center='Loading...'
         %tr
           %td
             %strong='Ilec'
           %td
-            .caller_id='Loading...'
+            #ilec='Loading...'
         %tr
           %td
             %strong='Latitude'
           %td
-            .caller_id='Loading...'
+            #latitude='Loading...'
         %tr
           %td
             %strong='Longitude'
           %td
-            .caller_id='Loading...'
+            #longitude='Loading...'
         %tr
           %td
             %strong='Rating'
           %td
-            .rating{itemprop: 'rating'}='Loading...'
+            #rating{itemprop: 'rating'}="4.#{readable_number[-2].to_i/2}"
         %tr
           %td
             %strong='Reviewed By'
           %td
-            .reviewer{itemprop:'reviewer'}='Loading...'
+            #reviewer{itemprop:'reviewer'}='NumberNote'
     .span6
       #map_canvas
 
 - content_for :body_js do
   :javascript
     $(document).ready(function(){
-      initNumberShow();
+      var caller_id_path  = "#{phonenumber_caller_id_path phonenumber_id: @phone_number.number, format: :json }"
+      var telco_info_path = "#{phonenumber_telco_info_path phonenumber_id: @phone_number.number, format: :json }"
+      initNumberShow(caller_id_path, telco_info_path, 1);
     });

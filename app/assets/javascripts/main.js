@@ -25,16 +25,68 @@ function updateMap(lat, lon, markerTitle) {
   });
 }
 
-function getJson(url) {
+function retrieveCallerId(caller_id_path) {
   return $.ajax({
     type: 'GET',
-    url: url,
-    dataType: 'json'
+    url: caller_id_path,
+    dataType: 'json',
+    success: callerIdSuccess,
+    error: callerIdError
   });
 }
 
-function initNumberShow(number) {
-  rcLat = 2;
-  rcLon = 3;
+function callerIdSuccess(requestedObject) {
+  if (requestedObject) {
+    $('#caller-id').text(requestedObject);
+  } else {
+    $('#caller-id').text('Unknown');
+  }
+}
+
+function callerIdError() {
+  $('#caller-id').text('Temporarily Unknown');
+}
+
+function retrieveTelcoInfo(telco_info_path) {
+  return $.ajax({
+    type: 'GET',
+    url: telco_info_path,
+    dataType: 'json',
+    success: telcoInfoSuccess,
+    error: telcoInfoError
+  });
+}
+
+function telcoInfoSuccess(requestedObject) {
+  $('#carrier-company').text(requestedObject.company_name);
+  $('#rate-center').text(requestedObject.rc);
+  $('#ilec').text(requestedObject.ilec_name);
+  $('#latitude').text(requestedObject.rc_lat);
+  $('#longitude').text(requestedObject.rc_lon);
+
+  console.log('requested info');
+  console.log(requestedObject);
+
+  rcLat = requestedObject.rc_lat;
+  rcLon = requestedObject.rc_lon;
   initializeMap();
+}
+
+function telcoInfoError() {
+  $('#carrier-company').text('Temporarily Unknown');
+  $('#rate-center').text('Temporarily Unknown');
+  $('#ilec').text('Temporarily Unknown');
+  $('#latitude').text('Temporarily Unknown');
+  $('#longitude').text('Temporarily Unknown');
+
+  rcLat = 0;
+  rcLon = 0;
+  initializeMap();
+}
+
+function initNumberShow(caller_id_path, telco_info_path, type) {
+  if (type == 1) {
+    retrieveCallerId(caller_id_path);
+  }
+  retrieveTelcoInfo(telco_info_path);
 }
