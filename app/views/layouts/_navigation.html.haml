@@ -27,5 +27,6 @@
               %a#navbar-user-image
                 %img{src: current_user.image}
           -else
-            %a.btn.btn-primary{title: true, href: user_omniauth_authorize_path(:facebook)}
-              %b='Sign in with Facebook'
+            %li
+              %a#navbar-facebook-login.btn.btn-primary{title: true, href: user_omniauth_authorize_path(:facebook)}
+                %b='Sign in with Facebook'

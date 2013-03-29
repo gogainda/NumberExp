@@ -1071,3 +1071,11 @@ ul.the-icons li:hover {
 #navbar-user-image {
     padding: 10px 0px;
 }
+#navbar-facebook-login {
+    color: #fff!important;
+    padding: 4px 12px;
+    text-decoration: none!important;
+}
+#navbar-facebook-login:hover {
+    background-color: blue!important;
+}
