@@ -1,0 +1,17 @@
+defaults: &defaults
+  app_name: 'NumberNote'
+
+development:
+  <<: *defaults
+  host: 'localhost:3000'
+  google_analytics_id: 'UA-xxxxxxx-DEV'
+
+test:
+  <<: *defaults
+  host: 'localhost:3000'
+  google_analytics_id: 'UA-xxxxxxx-TEST'
+
+production:
+  <<: *defaults
+  host: 'www.numbernote.com'
+  google_analytics_id: 'UA-31403396-1'
