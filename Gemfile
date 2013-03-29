@@ -20,6 +20,7 @@ gem 'devise_invitable', '>= 1.1.5'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'cancan', '>= 1.6.8'
+gem 'newrelic_rpm'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
