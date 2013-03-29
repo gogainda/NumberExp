@@ -8,6 +8,12 @@
       %a.brand{href: root_path}
         %b='Number'
         Note
+      - unless params[:action] == 'home'
+        = form_tag({controller: :phonenumbers, action: :search}, method: :get, id: 'nav-search', class: 'navbar-form form-inline pull-left') do
+          .input-append
+            %input{type: 'text', placeholder:'Search...', name: :number}
+            %button.btn{type: :submit}
+              Search
       .nav-collapse
         %ul.nav
           %li
@@ -15,8 +21,11 @@
           %li
             %a{href: index_npa_path}= 'Area Codes'
           -if user_signed_in?
-            = link_to('Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-inverse')
-            %img{src: "#{current_user.image}"}
+            %li
+              = link_to('Sign out', destroy_user_session_path, method: :delete)
+            %li
+              %a#navbar-user-image
+                %img{src: current_user.image}
           -else
             %a.btn.btn-primary{title: true, href: user_omniauth_authorize_path(:facebook)}
               %b='Sign in with Facebook'
