@@ -296,7 +296,6 @@ footer .social-networks a:hover {
 }
 @media(min-width:979px) {
     .homepage {
-    background: url(/assets/homepage-background.png);
     padding-bottom: 40px;
 }
 }@media(max-width:979px) and (min-width:768px) {
