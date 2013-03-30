@@ -126,9 +126,11 @@ class PhoneNumber
         use_ssl: true
       }).phone @number.to_s
     rescue => e
-      Rails.logger.error 'opencnam lookup failed'
-      Rails.logger.error e.message
-      Rails.logger.error e.backtrace.join("\n")
+      unless e.message.downcase == 'not found'
+        Rails.logger.error 'opencnam lookup failed'
+        Rails.logger.error e.message
+        Rails.logger.error e.backtrace.join("\n")
+      end
       nil
     end
   end
