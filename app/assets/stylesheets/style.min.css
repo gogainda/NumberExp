@@ -380,7 +380,7 @@ footer .social-networks a:hover {
 }
 @media(max-width:480px) {
     .faq input[type=text], .faq input[type=tel] {
-    width: 225px;
+    width: 200px;
 }
 }.search_button {
     padding: 14px 28px;
@@ -388,6 +388,11 @@ footer .social-networks a:hover {
     border-radius: 0 3px 3px 0;
     -moz-border-radius: 0 3px 3px 0;
     -webkit-border-radius: 0 3px 3px 0;
+}
+@media(max-width:979px) {
+    .search_button {
+      padding: 14px 14px;
+    }
 }
 .pricing>div {
     color: #666;

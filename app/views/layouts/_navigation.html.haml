@@ -11,7 +11,7 @@
       - unless params[:action] == 'home'
         = form_tag({controller: :phonenumbers, action: :search}, method: :get, id: 'nav-search', class: 'navbar-form form-inline pull-left') do
           .input-append
-            %input{type: 'text', placeholder:'Search...', name: :number}
+            %input{type: 'tel', placeholder:'Search...', name: :number}
             %button.btn{type: :submit}
               Search
       .nav-collapse
