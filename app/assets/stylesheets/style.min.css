@@ -372,14 +372,14 @@ footer .social-networks a:hover {
     font-size: 1.05em;
     line-height: 1.6em;
 }
-.faq input[type=text] {
+.faq input[type=text], .faq input[type=tel] {
     padding: 14px;
     box-shadow: none;
     font-size: 16px;
     width: 400px;
 }
 @media(max-width:480px) {
-    .faq input[type=text] {
+    .faq input[type=text], .faq input[type=tel] {
     width: 225px;
 }
 }.search_button {

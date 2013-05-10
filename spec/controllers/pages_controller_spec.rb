@@ -9,7 +9,7 @@ describe PagesController do
     it { should be_success }
     its(:body) { should have_selector 'button[type=submit]', text: 'Search' }
     its(:body) { should have_selector "form[action='/n/search'][method=get]" }
-    its(:body) { should have_selector 'input[type=text][name=number]' }
+    its(:body) { should have_selector 'input[type=tel][name=number]' }
   end
 
   describe 'privacy policy page' do

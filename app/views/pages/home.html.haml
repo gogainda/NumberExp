@@ -6,7 +6,7 @@
       %p.ac
         Enter any number to get its details and community comments
       = form_tag({controller: :phonenumbers, action: :search}, method: :get, id: 'home-search', class: 'ac faq') do
-        %input{type: 'text', placeholder:'Search...', id: :number, name: :number}
+        %input{type: 'tel', placeholder: 'Search...', id: :number, name: :number}
         %button.btn.btn-success.search_button{type: :submit}
           Search
     %hr
