@@ -1,12 +1,11 @@
 class User < ActiveRecord::Base
-  devise :registerable, :rememberable, :trackable,
+  devise :registerable, :rememberable, :trackable, :database_authenticatable,
          :omniauthable, omniauth_providers: [:facebook]
 
   store :info, accessors: [:first_name, :last_name, :name, :gender, :timezone, :username, :image, :nickname, :urls]
 
   attr_accessible :email, :remember_me, :facebook_uid, :facebook_token
 
-  validates_presence_of :facebook_uid
   validates_uniqueness_of :facebook_uid
 
   def self.from_facebook_omniauth(auth)

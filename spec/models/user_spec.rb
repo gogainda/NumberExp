@@ -1,8 +1,7 @@
 require 'spec_helper'
 
 describe User do
-  describe 'validations' do
-    it { should validate_presence_of :facebook_uid }
+  describe 'validation' do
     it { should validate_uniqueness_of :facebook_uid }
   end
 
@@ -21,6 +20,27 @@ describe User do
       it { should respond_to :image }
       it { should respond_to :nickname }
       it { should respond_to :urls }
+    end
+  end
+
+  describe 'creating a plain user' do
+    subject { FactoryGirl.build :user }
+
+    context 'new user' do
+      it 'creates a new user' do
+        expect { subject.save}.to change { User.count }.by 1
+      end
+
+      it { should be_an_instance_of User }
+    end
+
+    context 'existing user' do
+      it 'does not create a new user' do
+        lambda do
+          FactoryGirl.build! :user
+          expect { subject.save }.to_not change { User.count }
+        end
+      end
     end
   end
 
