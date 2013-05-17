@@ -73,3 +73,13 @@ module TestHelpers
     }
   end
 end
+
+FactoryGirl.define do
+  sequence :email do |n|
+    "person#{n}@example.com"
+  end
+
+  sequence :string do |n|
+    "random_string#{n}"
+  end
+end

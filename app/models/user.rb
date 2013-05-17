@@ -1,10 +1,10 @@
 class User < ActiveRecord::Base
   devise :registerable, :rememberable, :trackable, :database_authenticatable,
-         :omniauthable, omniauth_providers: [:facebook]
+         :omniauthable, :recoverable, :validatable, omniauth_providers: [:facebook]
 
   store :info, accessors: [:first_name, :last_name, :name, :gender, :timezone, :username, :image, :nickname, :urls]
 
-  attr_accessible :email, :remember_me, :facebook_uid, :facebook_token
+  attr_accessible :email, :password, :remember_me, :facebook_uid, :facebook_token
 
   validates_uniqueness_of :facebook_uid
 
@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
       user.image        = base_info.image
       user.nickname     = base_info.nickname
       user.urls         = base_info.urls
+      user.password     = SecureRandom.urlsafe_base64 unless user.encrypted_password?
     end
   end
 

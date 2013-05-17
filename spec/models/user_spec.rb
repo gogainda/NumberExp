@@ -3,6 +3,9 @@ require 'spec_helper'
 describe User do
   describe 'validation' do
     it { should validate_uniqueness_of :facebook_uid }
+    it { should validate_uniqueness_of :email }
+    it { should validate_presence_of :password }
+    it { should validate_presence_of :email }
   end
 
   describe '#info key-value store' do
@@ -24,11 +27,12 @@ describe User do
   end
 
   describe 'creating a plain user' do
-    subject { FactoryGirl.build :user }
+    before { @user = User.new password: 'asdfg23456', email: 'asdf@example.com' }
+    subject { @user }
 
     context 'new user' do
       it 'creates a new user' do
-        expect { subject.save}.to change { User.count }.by 1
+        expect { subject.save }.to change { User.count }.by 1
       end
 
       it { should be_an_instance_of User }
@@ -36,10 +40,8 @@ describe User do
 
     context 'existing user' do
       it 'does not create a new user' do
-        lambda do
-          FactoryGirl.build! :user
-          expect { subject.save }.to_not change { User.count }
-        end
+        @user.dup.save
+        expect { subject.save }.to_not change { User.count }
       end
     end
   end
@@ -74,10 +76,8 @@ describe User do
       subject { User.from_facebook_omniauth auth }
 
       it 'does not create a new user' do
-        lambda do
-          FactoryGirl.build! :facebook_user
-          expect { subject.save }.to_not change { User.count }
-        end
+        User.from_facebook_omniauth(auth).dup.save
+        expect { subject.save }.to_not change { User.count }
       end
     end
   end
