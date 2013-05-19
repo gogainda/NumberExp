@@ -24,9 +24,14 @@
             %li
               = link_to('Sign out', destroy_user_session_path, method: :delete)
             %li
-              %a#navbar-user-image
-                %img{src: current_user.image}
+              = link_to('Account', edit_user_registration_path, method: :get)
+            -if current_user.image
+              %li
+                %a#navbar-user-image
+                  %img{src: current_user.image}
           -else
+            %li
+              = link_to 'Sign in', new_user_session_path, method: :get
             %li
               %a#navbar-facebook-login.btn.btn-primary{title: true, href: user_omniauth_authorize_path(:facebook)}
                 %b='Sign in with Facebook'

@@ -1083,3 +1083,6 @@ ul.the-icons li:hover {
 #navbar-facebook-login:hover {
     background-color: blue!important;
 }
+input[name='number'] {
+  width: 175px;
+}
