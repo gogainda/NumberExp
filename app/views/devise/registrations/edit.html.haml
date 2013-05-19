@@ -14,11 +14,7 @@
     %i (leave blank if you don't want to change it)
     %br/
     = f.password_field :password, :autocomplete => "off"
-  %div
-    = f.label :current_password
-    %i (we need your current password to confirm your changes)
-    %br/
-    = f.password_field :current_password
+
   %div= f.submit "Update"
 %h3 Cancel my account
 %p

@@ -37,4 +37,11 @@ class User < ActiveRecord::Base
   def premium_access?
     true
   end
+
+  # overwriting devise default to remove password confirmation
+  def update_with_password(params={})
+    params.delete(:password) if params[:password].blank?
+    params.delete(:password_confirmation) if params[:password_confirmation].blank?
+    update_attributes params
+  end
 end
