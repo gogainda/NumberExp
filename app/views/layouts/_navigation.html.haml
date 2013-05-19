@@ -28,7 +28,7 @@
             -if current_user.image
               %li
                 %a#navbar-user-image
-                  %img{src: current_user.image}
+                  %img{src: current_user.image, class: 'thumbnail'}
           -else
             %li
               = link_to 'Sign in', new_user_session_path, method: :get
