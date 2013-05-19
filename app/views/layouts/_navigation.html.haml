@@ -9,7 +9,7 @@
         %b='Number'
         Note
       - unless params[:action] == 'home'
-        = form_tag({controller: :phonenumbers, action: :search}, method: :get, id: 'nav-search', class: 'navbar-form form-inline pull-left') do
+        = form_tag(search_phonenumbers_path, method: :get, id: 'nav-search', class: 'navbar-form form-inline pull-left') do
           .input-append
             %input{type: 'tel', placeholder:'Search...', name: :number}
             %button.btn{type: :submit}

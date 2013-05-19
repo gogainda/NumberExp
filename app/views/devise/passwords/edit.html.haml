@@ -6,9 +6,5 @@
     = f.label :password, "New password"
     %br/
     = f.password_field :password, :autofocus => true
-  %div
-    = f.label :password_confirmation, "Confirm new password"
-    %br/
-    = f.password_field :password_confirmation
   %div= f.submit "Change my password"
 = render "devise/shared/links"

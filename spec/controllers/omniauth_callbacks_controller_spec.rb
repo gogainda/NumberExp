@@ -27,14 +27,12 @@ describe OmniauthCallbacksController do
       end
 
       it 'does not create an old user' do
-        lambda do
-          FactoryGirl.build! :facebook_user
-          expect {
-            do_request
-          }.to_not change {
-            User.count
-          }
-        end
+        User.from_facebook_omniauth(auth).dup.save
+        expect {
+          do_request
+        }.to_not change {
+          User.count
+        }
       end
     end
   end

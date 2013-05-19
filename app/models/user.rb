@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :remember_me, :facebook_uid, :facebook_token
 
-  validates_uniqueness_of :facebook_uid
+  validates_uniqueness_of :facebook_uid, allow_blank: true
 
   def self.from_facebook_omniauth(auth)
     user = where(facebook_uid: auth.uid).first_or_initialize

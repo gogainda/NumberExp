@@ -88,7 +88,7 @@ describe PhonenumbersController do
   describe 'caller_id' do
     it 'returns caller id' do
       get :caller_id, phonenumber_id: 7736292663, format: :json
-      response.body.should eq 'WIRELESS CALLER'
+      response.body.should =~ /WIRELESS CALLER/
     end
   end
 

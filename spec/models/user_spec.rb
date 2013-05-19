@@ -27,12 +27,20 @@ describe User do
   end
 
   describe 'creating a plain user' do
-    before { @user = User.new password: 'asdfg23456', email: 'asdf@example.com' }
+    before { @user = User.new password: FactoryGirl.generate(:string), email: FactoryGirl.generate(:email) }
     subject { @user }
 
     context 'new user' do
       it 'creates a new user' do
         expect { subject.save }.to change { User.count }.by 1
+      end
+
+      it 'creates multiple plain users without facebook_uid clashes' do
+        expect {
+          2.times { User.create password: FactoryGirl.generate(:string), email: FactoryGirl.generate(:email) }
+        }.to change {
+          User.count
+        }.by 2
       end
 
       it { should be_an_instance_of User }
